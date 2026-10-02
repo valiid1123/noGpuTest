@@ -1,2 +1,2 @@
-sudo chmod x+ ./baseinstall.sh
+sudo chmod +x ./baseinstall.sh
 sudo ./baseinstall.sh
