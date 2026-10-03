@@ -1,1 +1,3 @@
 
+rm debian12.qcow2
+qemu-img create -f qcow2 debian12.qcow2 20G   
