@@ -1,0 +1,26 @@
+# 0. Install QEMU and KVM
+sudo apt install -y qemu-system-x86 qemu-utils libvirt-daemon-system virtinst
+
+# 1. Create the virtual disk
+qemu-img create -f qcow2 debian12.qcow2 20G
+
+# 2. Download the Debian 12 netinst ISO
+wget https://cdimage.debian.org/cdimage/archive/12.15.0/amd64/iso-cd/debian-12.15.0-amd64-netinst.iso
+
+# 3. Boot the ISO to install Debian
+qemu-system-x86_64 \
+  -enable-kvm -m 4G -smp 2 \
+  -boot d \
+  -cdrom debian-12.15.0-amd64-netinst.iso \
+  -drive file=debian12.qcow2,format=qcow2 \
+  -netdev user,id=net0 \
+  -device virtio-net-pci,netdev=net0 \
+  -display gtk,gl=on
+
+# 4. After install is done, run the VM (no ISO needed)
+qemu-system-x86_64 \
+  -enable-kvm -m 4G -smp 2 \
+  -drive file=debian12.qcow2,format=qcow2 \
+  -netdev user,id=net0 \
+  -device virtio-net-pci,netdev=net0 \
+  -display gtk,gl=on   
