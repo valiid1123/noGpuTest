@@ -1,0 +1,4 @@
+echo $DISPLAY   
+startx   
+apt install -y spice-vdagent   
+spice-vdagent &   
