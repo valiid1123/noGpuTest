@@ -1,0 +1,19 @@
+make sure to only install standard system utilities not desktop
+after os install 
+as root install steam : 
+* make so you can install steam
+# Enable contrib in your sources
+sed -i 's/main/main contrib non-free/' /etc/apt/sources.list
+
+# Then the usual steps
+dpkg --add-architecture i386
+apt update
+apt install -y steam-installer steam-devices   
+dpkg --add-architecture i386
+apt update
+apt install -y steam-installer steam-devices \
+  mesa-vulkan-drivers libglx-mesa0:i386 \
+  mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386   
+dpkg --add-architecture i386
+apt update
+apt install -y openbox xorg xinit steam   
